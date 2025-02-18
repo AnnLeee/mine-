@@ -3,22 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <title>Valentine Vui Vẻ</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8c8d8; /* Màu hồng pastel */
-            color: #f5a3c7; /* Màu hồng pastel nhạt hơn */
+            font-family: 'Pacifico', cursive;
+            background-color: #fce1ec; /* Màu hồng pastel sáng */
+            color: #ffb3d9; /* Màu hồng pastel sáng nhẹ */
             text-align: center;
             padding: 50px;
         }
         h1 {
             font-size: 3em;
             margin-bottom: 20px;
-            color: #f08080; /* Màu đỏ hồng nhạt */
+            color: #ff80b3; /* Màu hồng pastel sáng nổi bật */
+        }
+        h3 {
+            color: #ffb3d9;
         }
         .button {
-            background-color: #ffb6c1; /* Màu hồng nhạt pastel */
+            background-color: #ffb3d9; /* Màu hồng pastel sáng */
             color: white;
             padding: 15px 32px;
             text-align: center;
@@ -32,7 +36,7 @@
             transition: background-color 0.3s ease;
         }
         .button:hover {
-            background-color: #f08080; /* Màu đỏ hồng khi hover */
+            background-color: #ff80b3; /* Màu hồng sáng khi hover */
         }
         .menu {
             display: none;
@@ -44,33 +48,102 @@
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+        .name-input-section {
+            margin-bottom: 30px;
+            background-color: #fff5f8;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            text-align: left;
+        }
+        .name-input {
+            font-size: 18px;
+            padding: 10px;
+            width: 250px;
+            margin-bottom: 15px;
+            border: 2px solid #ffb3d9;
+            border-radius: 8px;
+            background-color: #fff;
+            transition: border-color 0.3s ease;
+        }
+        .name-input:focus {
+            border-color: #ff80b3;
+            outline: none;
+        }
+        .name-input-button {
+            background-color: #ffb3d9; /* Màu hồng pastel sáng */
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .name-input-button:hover {
+            background-color: #ff80b3; /* Màu hồng sáng khi hover */
+        }
     </style>
 </head>
 <body>
-    <h1>Chị có muốn uống trà sữa không?</h1>
-    <h3>Nhấn "Có" để chọn menu - Nhấn "Không" để từ chối Nii </h3>
-    <button id="yesButton" class="button">Có</button>
-    <button id="noButton" class="button">Không</button>
+    <!-- Hộp nhập tên -->
+    <div id="nameInputSection" class="name-input-section">
+        <label for="nameInput">Nhập tên của bạn:</label>
+        <input type="text" id="nameInput" class="name-input" placeholder="Nhập tên của bạn">
+        <button id="enterNameButton" class="name-input-button">Xác nhận</button>
+    </div>
+
+    <!-- Câu hỏi sẽ được ẩn cho đến khi người dùng nhập tên -->
+    <div id="questionSection" style="display: none;">
+        <h1 id="question">Chị có muốn uống trà sữa không?</h1>
+        <h3>Nhấn "Có" để chọn menu - Nhấn "Không" để từ chối Nii</h3>
+
+        <button id="yesButton" class="button">Có</button>
+        <button id="noButton" class="button">Không</button>
+    </div>
 
     <div id="menu" class="menu">
-        <h1>Chị Lệ ơiiiiiiiiiii</h1>
+        <h1 id="greeting">Chị Lệ ơiiiiiiiiiii</h1> 
         <h2>Trà Sữa gì không người đẹp???</h2>
-        <!-- Thay thế đường dẫn hình ảnh bằng hình ảnh menu của bạn -->
         <img src="475774549_534903419602735_4767280974957956782_n.jpg" alt="Menu Trà Sữa">
     </div>
 
     <script>
+        const enterNameButton = document.getElementById('enterNameButton');
+        const nameInput = document.getElementById('nameInput');
+        const nameInputSection = document.getElementById('nameInputSection');
+        const questionSection = document.getElementById('questionSection');
+        const greeting = document.getElementById('greeting');
         const yesButton = document.getElementById('yesButton');
         const noButton = document.getElementById('noButton');
         const menu = document.getElementById('menu');
 
         let noButtonClicks = 0; // Biến đếm số lần nhấn nút "Không"
 
+        // Xử lý sự kiện khi người dùng nhập tên và nhấn "Xác nhận"
+        enterNameButton.addEventListener('click', () => {
+            const userName = nameInput.value.trim();
+            if (userName) {
+                // Cập nhật lời chào và ẩn phần nhập tên
+                greeting.textContent = `Chị ${userName} ơiiiiiiiiiii`;
+                nameInputSection.style.display = 'none'; // Ẩn phần nhập tên
+                questionSection.style.display = 'block'; // Hiển thị câu hỏi
+            } else {
+                alert('Vui lòng nhập tên!');
+            }
+        });
+
+        // Khi chọn "Có"
         yesButton.addEventListener('click', () => {
             menu.style.display = 'block';
             noButton.style.display = 'none'; // Ẩn nút "Không"
+            yesButton.style.display = 'none'; // Ẩn nút "Có"
+            document.querySelector('h1').style.display = 'none'; // Ẩn câu hỏi khi chọn "Có"
+            document.querySelector('h3').style.display = 'none'; // Ẩn hướng dẫn khi chọn "Có"
         });
 
+        // Khi nút "Không" di chuyển
         noButton.addEventListener('mouseover', () => {
             const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
             const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
@@ -79,6 +152,7 @@
             noButton.style.top = `${y}px`;
         });
 
+        // Khi chọn "Không"
         noButton.addEventListener('click', () => {
             noButtonClicks++; // Tăng biến đếm mỗi khi nhấn "Không"
             if (noButtonClicks >= 10) {
