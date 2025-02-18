@@ -48,6 +48,7 @@
 </head>
 <body>
     <h1>Chị có muốn uống trà sữa không?</h1>
+    <h3>Nhấn "Có" để chọn menu - Nhấn "Không" để từ chối Nii </h3>
     <button id="yesButton" class="button">Có</button>
     <button id="noButton" class="button">Không</button>
 
@@ -83,7 +84,6 @@
             if (noButtonClicks >= 10) {
                 noButton.style.display = 'none'; // Ẩn nút "Không"
                 yesButton.style.display = 'inline-block'; // Hiển thị lại nút "Có"
-                alert('Chị chuyển sang chọn "Có" rồi nhé!'); // Thông báo khi nhấn 10 lần
             }
         });
     </script>
