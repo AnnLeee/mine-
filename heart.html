@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Vui Vẻ</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fcc0d8;
+            color: #ff6699;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .button {
+            background-color: #ff85a2;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 12px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #ff6699;
+        }
+        .menu {
+            display: none;
+            margin-top: 20px;
+        }
+        .menu img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Chị có muốn uống trà sữa không?</h1>
+    <button id="yesButton" class="button">Có</button>
+    <button id="noButton" class="button">Không</button>
+
+    <div id="menu" class="menu">
+        <h1>Chị Lệ ơiiiiiiiiiii</h1>
+        <h2>Trà Sữa gì không người đẹp???</h2>
+        <!-- Thay thế đường dẫn hình ảnh bằng hình ảnh menu của bạn -->
+        <img src="475774549_534903419602735_4767280974957956782_n.jpg" alt="Menu Trà Sữa">
+    </div>
+
+    <script>
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        const menu = document.getElementById('menu');
+
+        yesButton.addEventListener('click', () => {
+            menu.style.display = 'block';
+        });
+
+        noButton.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        });
+
+        noButton.addEventListener('click', () => {
+            alert('Không được bấm không đâu nhé!');
+        });
+    </script>
+</body>
+</html>
