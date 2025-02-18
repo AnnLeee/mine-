@@ -63,6 +63,8 @@
         const noButton = document.getElementById('noButton');
         const menu = document.getElementById('menu');
 
+        let noButtonClicks = 0; // Biến đếm số lần nhấn nút "Không"
+
         yesButton.addEventListener('click', () => {
             menu.style.display = 'block';
             noButton.style.display = 'none'; // Ẩn nút "Không"
@@ -77,7 +79,12 @@
         });
 
         noButton.addEventListener('click', () => {
-            alert('Không được bấm không đâu nhé!');
+            noButtonClicks++; // Tăng biến đếm mỗi khi nhấn "Không"
+            if (noButtonClicks >= 10) {
+                noButton.style.display = 'none'; // Ẩn nút "Không"
+                yesButton.style.display = 'inline-block'; // Hiển thị lại nút "Có"
+                alert('Chị chuyển sang chọn "Có" rồi nhé!'); // Thông báo khi nhấn 10 lần
+            }
         });
     </script>
 </body>
